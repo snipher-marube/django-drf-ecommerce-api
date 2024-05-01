@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # External packages
     "rest_framework",
     "mptt",
+    "drf_spectacular",
     # Internal apps
     'product',
 ]
@@ -115,10 +116,13 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Rest Framework settingS
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.TokenAuthentication",
-    ],
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
-    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Django DRF Ecommerce API',
+    'DESCRIPTION': 'A simple API for an ecommerce application',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SCHEMA_PATH_PREFIX': '/api/schema',
 }

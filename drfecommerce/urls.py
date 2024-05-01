@@ -23,6 +23,8 @@ from product.views import CategoryViewSet, BrandViewSet, ProductViewSet
 
 router = DefaultRouter()
 router.register('category', CategoryViewSet)
+router.register('brand', BrandViewSet)
+router.register('product', ProductViewSet)
 
 
 urlpatterns = [

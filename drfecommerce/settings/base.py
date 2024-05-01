@@ -120,7 +120,7 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'dJANGO DRF Ecommerce API',
+    'TITLE': 'Django DRF Ecommerce API',
     'DESCRIPTION': 'A simple API for an ecommerce application',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,

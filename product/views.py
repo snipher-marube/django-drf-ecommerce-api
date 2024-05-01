@@ -1,33 +1,39 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.response import Response
+from drf_spectacular.utils import extend_schema
 
 from .models import Product, Brand, Category
 from .serializers import ProductSerializer, BrandSerializer, CategorySerializer
 
-class CategoryViewSet(viewsets.Vieset):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
+class CategoryViewSet(viewsets.ViewSet):
+   """
+   A simple ViewSet for viewing all categories.
+   """
+   queryset = Category.objects.all()
+   
+   @extend_schema(responses=CategorySerializer)
+   def list(self, request):
+       serializer = CategorySerializer(self.queryset, many=True)
+       return Response(serializer.data)
     
-    def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-    
-class BrandViewSet(viewsets.Vieset):
+class BrandViewSet(viewsets.ViewSet):
+    """
+    A simple ViewSet for viewing all brands.
+    """
     queryset = Brand.objects.all()
-    serializer_class = BrandSerializer
     
-    def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        serializer = self.get_serializer(queryset, many=True)
+    @extend_schema(responses=BrandSerializer)
+    def list(self, request):
+        serializer = BrandSerializer(self.queryset, many=True)
         return Response(serializer.data)
-    
-class ProductViewSet(viewsets.Vieset):
+class ProductViewSet(viewsets.ViewSet):
+    """ 
+    A simple ViewSet for viewing all products.
+    """
     queryset = Product.objects.all()
-    serializer_class = ProductSerializer
     
-    def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        serializer = self.get_serializer(queryset, many=True)
+    @extend_schema(responses=ProductSerializer)
+    def list(self, request):
+        serializer = ProductSerializer(self.queryset, many=True)
         return Response(serializer.data)
